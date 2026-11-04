@@ -1,0 +1,8 @@
+{
+  "name": "diagramas",
+  "description": "Diagramas Mermaid desde el código o una descripción, con visor HTML local",
+  "version": "0.1.0",
+  "author": {
+    "name": "Equipo de documentación"
+  }
+}

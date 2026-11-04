@@ -1,0 +1,24 @@
+{
+  "name": "empresa-skills",
+  "description": "Skills internas de Claude Code para documentar el código por procesos",
+  "owner": {
+    "name": "Equipo de documentación"
+  },
+  "plugins": [
+    {
+      "name": "documentacion",
+      "source": "./plugins/documentacion",
+      "description": "Manual por procesos a partir del código: escribir, revisar contra el código, consultar y visita guiada"
+    },
+    {
+      "name": "diagramas",
+      "source": "./plugins/diagramas",
+      "description": "Diagramas Mermaid desde el código o una descripción, con visor HTML local"
+    },
+    {
+      "name": "revision",
+      "source": "./plugins/revision",
+      "description": "Entrevista por rondas para acotar un trabajo y revisión de cambios con informe"
+    }
+  ]
+}
