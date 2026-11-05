@@ -3,6 +3,10 @@
 Cada versión sube `version` en `plugins/<plugin>/.claude-plugin/plugin.json`.
 Sin subir la versión, quien ya tenga el plugin instalado **no recibe los cambios**.
 
+## AAAA-MM-DD (3)
+- `documentacion` 0.1.1: `wiki-codigo` y `onboarding-procesos` dicen «denegado, no leído»
+  cuando un fichero está bloqueado por permisos, en lugar de afirmar que no existe
+
 ## AAAA-MM-DD (2)
 - `revision` 0.2.0: `.mcp.json` con el servidor MCP de Microsoft Learn
 
