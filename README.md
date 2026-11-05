@@ -20,7 +20,7 @@ empresa-skills/                      ← raíz del marketplace (este repo)
 │   │   │   └── onboarding-procesos/
 │   │   └── README.md
 │   ├── diagramas/                   ← mermaid, diagrama-flujo
-│   └── revision/                    ← grill-me, code-review
+│   └── revision/                    ← grill-me, code-review y .mcp.json (Microsoft Learn)
 ├── CHANGELOG.md
 ├── GUIA-SKILLS.md                   ← qué enseña cada skill y notas para la clase
 └── README.md
@@ -30,13 +30,13 @@ empresa-skills/                      ← raíz del marketplace (este repo)
 |---|---|---|
 | `documentacion` | `wiki-codigo`, `onboarding-procesos` · `wiki-lint` · `wiki-query` | 1 · 2 · 3 |
 | `diagramas` | `mermaid` (`diagrama-flujo`, de consulta) | 1 |
-| `revision` | `grill-me` · `code-review` (de consulta) | 2 |
+| `revision` | `grill-me` · `code-review` (de consulta) + MCP de Microsoft Learn | 2 · 3 |
 
 `.claude-plugin/marketplace.json` en la raíz es obligatorio. El `plugin.json` de cada plugin
 es opcional, pero sin él no hay `version` y nadie recibe los cambios: se deja siempre.
 
 Más adelante, dentro de cada plugin: `agents/` (subagentes), `hooks/hooks.json` (hooks) y
-`.mcp.json` (servidores MCP). Ver «Reglas».
+`.mcp.json` (servidores MCP; `revision` ya trae uno). Ver «Reglas».
 
 ## Reglas
 
@@ -50,7 +50,10 @@ Más adelante, dentro de cada plugin: `agents/` (subagentes), `hooks/hooks.json`
    `CHANGELOG.md`). La versión va solo en `plugin.json`, no también en `marketplace.json`.
 6. **Las skills de un plugin llevan prefijo**: `wiki-codigo` se lanza como
    `/documentacion:wiki-codigo`.
-7. Nada de datos de clientes ni credenciales en este repo.
+7. **Las herramientas MCP de un plugin también llevan prefijo**:
+   `mcp__plugin_<plugin>_<servidor>__<herramienta>`. Es el nombre que va en los permisos.
+8. Nada de datos de clientes ni credenciales en este repo (tampoco en un `.mcp.json`: las
+   credenciales van en variables de entorno, `${VARIABLE}`).
 
 ## Probar cambios antes de publicarlos
 
