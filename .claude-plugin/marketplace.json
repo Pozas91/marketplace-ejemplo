@@ -1,6 +1,6 @@
 {
   "name": "empresa-skills",
-  "description": "Skills internas de Claude Code para documentar el código por procesos",
+  "description": "Skills de Claude Code para documentar el código por procesos, con citas fichero:línea",
   "owner": {
     "name": "Equipo de documentación"
   },

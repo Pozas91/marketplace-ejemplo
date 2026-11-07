@@ -41,8 +41,8 @@ Por cada hecho que vayas a escribir, anota de dónde sale (`ruta/fichero.ext:lí
 
 - Lee la función antes de describirla. Nunca deduzcas el comportamiento por el nombre.
 - Fíjate en las condiciones: ahí están las reglas de negocio y los casos excepcionales.
-- Si ves código que depende del cliente (ifs por cliente, configuración, ficheros
-  sobrescritos), anótalo como punto de personalización.
+- Si ves código que cambia según el cliente, la instalación o la configuración (ifs por
+  cliente, ficheros sobrescritos, parámetros), anótalo como punto de personalización.
 
 ### 3. Escribir la página
 

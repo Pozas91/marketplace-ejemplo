@@ -52,7 +52,7 @@ recomendada. Después espera mis respuestas.
 
 ## Uso típico en documentación
 
-- **Acotar un manual** antes de escribirlo: `/revision:grill-me manual AutoStore del cliente X`.
+- **Acotar un manual** antes de escribirlo: `/revision:grill-me manual de recepción del cliente X`.
   Ramas habituales: qué procesos entran y cuáles no, nivel de detalle, quién es el lector
   (soporte, consultoría, asistente de IA), qué cuenta como personalización, quién valida y
   cómo, dónde se guarda.

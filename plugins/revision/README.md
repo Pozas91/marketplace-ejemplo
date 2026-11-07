@@ -2,7 +2,7 @@
 
 | Comando | Qué hace |
 |---|---|
-| `/revision:grill-me <plan o alcance>` | Entrevista por rondas con recomendación en cada pregunta. Solo se lanza a mano |
+| `/revision:grill-me <plan o alcance>` | Entrevista por rondas con recomendación en cada pregunta (adaptada de Matt Pocock, MIT). Solo se lanza a mano |
 | `/revision:code-review [--commits N \| ruta]` | Informe de los cambios recientes con escenario de fallo concreto. No modifica código. Solo se lanza a mano |
 
 ## MCP incluido: Microsoft Learn
@@ -20,5 +20,6 @@ Es remoto, no pide login y solo lee documentación pública. Sirve, por ejemplo,
 - Para no confirmar cada llamada, en `.claude/settings.json`:
   `"allow": ["mcp__plugin_revision_microsoft-learn__*"]`
 - La consulta viaja a Microsoft: no poner nombres de clientes ni código en la pregunta.
+- Si no trabajas con tecnología de Microsoft, desactívalo en `/mcp`.
 
 Ver [CHANGELOG.md](../../CHANGELOG.md) en la raíz del repositorio.

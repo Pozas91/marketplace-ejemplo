@@ -1,7 +1,7 @@
 {
   "name": "revision",
   "description": "Entrevista por rondas para acotar un trabajo y revisión de cambios con informe",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "author": {
     "name": "Equipo de documentación"
   }

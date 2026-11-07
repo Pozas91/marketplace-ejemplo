@@ -1,7 +1,12 @@
 # Marketplace de skills de Claude Code
 
-Repositorio **privado** con los plugins internos de Claude Code. Es un *marketplace*: un
-catálogo que Claude Code lee para instalar plugins por nombre y recibir sus actualizaciones.
+Plugins de Claude Code para **documentar un código por procesos de negocio**: cada afirmación
+lleva su cita `fichero:línea`, el resultado se revisa contra el código y se exporta a Word.
+Es un *marketplace*: un catálogo que Claude Code lee para instalar plugins por nombre y
+recibir sus actualizaciones.
+
+Es público y sirve de plantilla: cópialo como repo privado de tu empresa y adapta los
+ejemplos (aquí son de un almacén).
 
 ## Estructura
 
@@ -17,18 +22,20 @@ empresa-skills/                      ← raíz del marketplace (este repo)
 │   │   │   ├── wiki-codigo/         ← SKILL.md + plantilla-pagina.md
 │   │   │   ├── wiki-lint/
 │   │   │   ├── wiki-query/
+│   │   │   ├── exportar-manual/     ← SKILL.md + scripts/ (PowerShell y filtro de pandoc)
 │   │   │   └── onboarding-procesos/
 │   │   └── README.md
 │   ├── diagramas/                   ← mermaid, diagrama-flujo
 │   └── revision/                    ← grill-me, code-review y .mcp.json (Microsoft Learn)
 ├── CHANGELOG.md
 ├── GUIA-SKILLS.md                   ← qué enseña cada skill y notas para la clase
+├── LICENSE                          ← MIT
 └── README.md
 ```
 
 | Plugin | Skills | Sesión |
 |---|---|---|
-| `documentacion` | `wiki-codigo`, `onboarding-procesos` · `wiki-lint` · `wiki-query` | 1 · 2 · 3 |
+| `documentacion` | `wiki-codigo`, `onboarding-procesos` · `wiki-lint`, `exportar-manual` · `wiki-query` | 1 · 2 · 3 |
 | `diagramas` | `mermaid` (`diagrama-flujo`, de consulta) | 1 |
 | `revision` | `grill-me` · `code-review` (de consulta) + MCP de Microsoft Learn | 2 · 3 |
 
@@ -65,12 +72,19 @@ claude --plugin-dir ./plugins/documentacion        # sesión con el plugin carga
 
 Dentro de la sesión, `/reload-plugins` recarga tras editar.
 
-`validate` avisa de que falta `LICENSE` e icono: son requisitos del directorio público de
-Anthropic, no de un marketplace interno. Se pueden ignorar.
+`validate` puede avisar de que falta icono: es requisito del directorio público de
+Anthropic, no de un marketplace. Se puede ignorar.
 
 ## Instalar (cada persona, una vez)
 
-Requisito: `git` con acceso al repo y la credencial ya guardada (Claude Code no pide
+Este mismo repo:
+
+```bash
+claude plugin marketplace add Pozas91/marketplace-ejemplo
+claude plugin install documentacion@empresa-skills
+```
+
+En tu copia privada. Requisito: `git` con acceso al repo y la credencial ya guardada (Claude Code no pide
 contraseña: si git tiene que preguntar, falla).
 
 ```bash
@@ -100,3 +114,16 @@ en su máquina la primera vez.
 - Quien publica: cambia, sube `version`, commit y push.
 - Quien usa: `/plugin marketplace update empresa-skills`, o activar *auto-update* en
   `/plugin` → Marketplaces (desactivado por defecto en marketplaces que no son de Anthropic).
+
+## Créditos
+
+- `grill-me` es una adaptación al español de
+  [`grilling`](https://github.com/mattpocock/skills/tree/main/skills/productivity/grilling),
+  de Matt Pocock (licencia MIT).
+- El patrón de wiki mantenida por un agente (escribir, consultar y revisar) se inspira en la
+  idea [LLM Wiki](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f) de
+  Andrej Karpathy.
+
+## Licencia
+
+MIT. Ver [LICENSE](LICENSE).

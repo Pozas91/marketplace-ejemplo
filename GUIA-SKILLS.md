@@ -13,6 +13,7 @@ Ocho skills de ejemplo para las sesiones, repartidas en tres plugins (`documenta
 | `grill-me` | Entrevista por rondas para acotar un alcance o sacar lo que solo sabe una persona | `disable-model-invocation`, `Agent` en `allowed-tools` (busca hechos con subagentes), un protocolo de conversación en vez de un resultado |
 | `wiki-lint` | Revisa la wiki contra el código (cada cita) y contra RAG-readiness | Modo solo informe por defecto y opción `--fix` en `$ARGUMENTS`; editar fuera de `allowed-tools` |
 | `wiki-query` | Responde solo con la wiki, como lo haría el futuro asistente, y valora la cobertura | Restringir las fuentes por instrucción; `--contrastar` para comprobar contra el código |
+| `exportar-manual` | Exporta la wiki a Word (y PDF si hay Word), en el orden del índice | Script en `scripts/` lanzado con `${CLAUDE_SKILL_DIR}` y permitido en `allowed-tools`: el trabajo lo hace el script y Claude no gasta contexto leyendo las páginas |
 
 ## Instalar
 
@@ -32,7 +33,7 @@ prefijo: `/mermaid`. Ojo: una copia suelta no se actualiza al subir la versión 
 /documentacion:wiki-query ¿por qué un palé se queda en muelle sin ubicar? --contrastar
 /diagramas:mermaid estados de un pedido de salida
 /diagramas:diagrama-flujo ubicación de palés secuencia
-/revision:grill-me manual AutoStore del cliente X
+/revision:grill-me manual de recepción del cliente X
 /revision:code-review --commits 3
 ```
 

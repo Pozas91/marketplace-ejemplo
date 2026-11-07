@@ -25,7 +25,7 @@ Lanza un subagente `Explore` (búsqueda de alcance "medium") con este encargo:
 > Devuelve, en menos de 60 líneas: stack y lenguaje; las carpetas de primer y segundo nivel
 > con una frase cada una; puntos de entrada (main, servicios, jobs, pantallas principales);
 > términos de negocio que aparecen en nombres de carpetas, clases o tablas (recepción,
-> ubicación, pedido, picking, expedición, inventario, AutoStore…); y señales de
+> ubicación, pedido, picking, expedición, inventario…); y señales de
 > personalización por cliente (carpetas o ficheros con nombre de cliente, `if` por cliente,
 > configuración por instalación). Cita rutas, no pegues código.
 
