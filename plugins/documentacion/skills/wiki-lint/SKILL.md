@@ -3,6 +3,8 @@ name: wiki-lint
 description: Revisa la wiki de procesos generada con wiki-codigo contra el código real y contra criterios de RAG-readiness. Comprueba que cada cita fichero:línea respalda lo que dice, detecta afirmaciones sin fuente, contradicciones entre páginas, enlaces rotos y secciones que no se entienden solas. Usar cuando se pida revisar, validar o auditar el manual o la wiki antes de darlo por bueno.
 argument-hint: "[página o proceso] [--fix]"
 allowed-tools: Read, Glob, Grep
+context: fork
+agent: general-purpose
 ---
 
 # Revisión de la wiki de procesos

@@ -11,7 +11,7 @@ Ocho skills de ejemplo para las sesiones, repartidas en tres plugins (`documenta
 | `mermaid` | Cualquier diagrama Mermaid (flujo, secuencia, estados, ER, clases) + visor HTML local | Varios ficheros de apoyo: `referencia.md` (se lee solo si hace falta) y `visor.html` (plantilla) |
 | `onboarding-procesos` | Visita guiada al repo por procesos de negocio, para quien llega nuevo | Skill interactiva (`AskUserQuestion`), delega el reconocimiento en un subagente `Explore`, `Bash` acotado a git de lectura, escribir fuera de `allowed-tools` a propósito |
 | `grill-me` | Entrevista por rondas para acotar un alcance o sacar lo que solo sabe una persona | `disable-model-invocation`, `Agent` en `allowed-tools` (busca hechos con subagentes), un protocolo de conversación en vez de un resultado |
-| `wiki-lint` | Revisa la wiki contra el código (cada cita) y contra RAG-readiness | Modo solo informe por defecto y opción `--fix` en `$ARGUMENTS`; editar fuera de `allowed-tools` |
+| `wiki-lint` | Revisa la wiki contra el código (cada cita) y contra RAG-readiness | `context: fork` + `agent`: corre en un subagente, abre todos los ficheros citados y solo vuelve el informe. Modo solo informe por defecto y `--fix` en `$ARGUMENTS` |
 | `wiki-query` | Responde solo con la wiki, como lo haría el futuro asistente, y valora la cobertura | Restringir las fuentes por instrucción; `--contrastar` para comprobar contra el código |
 | `exportar-manual` | Exporta la wiki a Word (y PDF si hay Word), en el orden del índice | Script en `scripts/` lanzado con `${CLAUDE_SKILL_DIR}` y permitido en `allowed-tools`: el trabajo lo hace el script y Claude no gasta contexto leyendo las páginas |
 
@@ -51,6 +51,8 @@ de picking», «explícame este proyecto»). `code-review` y `grill-me` solo se 
 | `allowed-tools` | Herramientas que la skill puede usar **sin pedir permiso**. El resto siguen pidiendo confirmación (no es una prohibición) | `code-review`: solo comandos git de lectura |
 | `disable-model-invocation` | `true` = Claude no la lanza por su cuenta; solo tú con `/nombre` | `code-review` |
 | `model` | Fuerza un modelo mientras la skill está activa | `diagrama-flujo`: `sonnet` |
+| `context` | `fork` es el único valor: la skill corre en un subagente aparte y solo vuelve su resultado. Sin `context`, corre en la conversación | `wiki-lint` |
+| `agent` | Con `context: fork`, qué subagente la ejecuta: `Explore` (solo lectura), `Plan`, `general-purpose` o uno propio | `wiki-lint`: `general-purpose`, porque `--fix` edita |
 
 En el cuerpo:
 
@@ -74,6 +76,10 @@ En el cuerpo:
   `/init` en el bloque 3.
 - **Delegar para no llenar el contexto.** El reconocimiento del repo lo hace un subagente
   `Explore` y solo vuelve el resumen: buen ejemplo para enseñar `/context` antes y después.
+- **`context: fork`, cuándo sí y cuándo no.** `wiki-lint` lo lleva: lee mucho, no pregunta
+  nada y devuelve un informe. `grill-me` y `onboarding-procesos` no pueden: un subagente no
+  tiene `AskUserQuestion`, así que dejarían de preguntar. Esas delegan solo la búsqueda
+  (`Agent` en `allowed-tools`) y siguen en la conversación.
 
 - **El ciclo de la wiki.** `wiki-codigo` escribe → `wiki-lint` revisa contra el código →
   `wiki-query` comprueba si basta para soporte. Son las 3 skills base del brief (manual por
