@@ -3,6 +3,11 @@
 Cada versión sube `version` en `plugins/<plugin>/.claude-plugin/plugin.json`.
 Sin subir la versión, quien ya tenga el plugin instalado **no recibe los cambios**.
 
+## 2026-11-09
+- `documentacion` 0.2.1: la plantilla de `wiki-codigo` añade `instalacion`, `tecnologia` y
+  `version` al frontmatter, para filtrar por cliente, instalación, tecnología y versión.
+  `wiki-lint` avisa si faltan o si no cuadran con el contenido
+
 ## 2026-11-07
 - `documentacion` 0.2.0: `exportar-manual` exporta la wiki a Word (y PDF si hay Word) con
   pandoc: portada, índice, un capítulo por página, citas quitadas y plantilla corporativa

@@ -54,8 +54,12 @@ respalda el código.
 
 - **Secciones que no se entienden solas**: «este proceso», «lo anterior», «como se ha dicho»
   sin repetir el nombre del proceso.
-- **Frontmatter incompleto**: faltan `proceso`, `cliente`, `modulos`, `ficheros_fuente`,
-  `actualizado` o `estado`.
+- **Frontmatter incompleto**: faltan `proceso`, `cliente`, `instalacion`, `tecnologia`,
+  `version`, `modulos`, `ficheros_fuente`, `actualizado` o `estado`. `version: desconocida`
+  se avisa como pendiente, no como error.
+- **Metadatos que no cuadran con el contenido**: una página con `cliente: generico` que
+  describe el comportamiento de un cliente concreto, o una `tecnologia` que el código citado
+  no respalda. Sin metadatos fiables, un asistente mezcla la información de varios clientes.
 - **Páginas de más de ~300 líneas**: candidatas a dividir en subprocesos.
 - **Imágenes o pantallazos sin descripción en texto**: un buscador no puede leerlos.
 - **Bloques de código largos** (más de 3 líneas): no aportan a un lector de soporte.

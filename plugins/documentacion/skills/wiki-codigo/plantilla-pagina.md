@@ -3,6 +3,9 @@ title: "<Nombre del proceso>"
 proceso: <slug-del-proceso>
 tipo: proceso            # proceso | subproceso
 cliente: generico        # generico | <nombre-cliente>
+instalacion: todas       # todas | <instalación concreta, si el cliente tiene varias>
+tecnologia: []           # tipos de almacén a los que aplica (p. ej. [verticales]); [] si es común
+version: desconocida     # versión del producto documentada; desconocida si no consta
 modulos: []              # módulos o carpetas del código implicados
 ficheros_fuente: []      # rutas leídas para escribir esta página
 actualizado: AAAA-MM-DD

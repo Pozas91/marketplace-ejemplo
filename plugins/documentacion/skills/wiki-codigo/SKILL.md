@@ -48,6 +48,17 @@ Por cada hecho que vayas a escribir, anota de dónde sale (`ruta/fichero.ext:lí
 
 Usa la estructura de [plantilla-pagina.md](plantilla-pagina.md).
 
+**Metadatos del frontmatter.** Sirven para filtrar: un buscador o un asistente solo debe
+devolver lo que aplica a ese cliente, instalación, tecnología y versión. Rellénalos todos:
+
+- `cliente` e `instalacion`: `generico` y `todas` salvo que documentes una personalización.
+- `tecnologia`: las tecnologías o tipos de almacén a los que aplica el proceso, según el
+  código (módulos, integraciones, configuración). `[]` si es común a todos.
+- `version`: búscala en los ficheros de versión del proyecto (`*.csproj`, `AssemblyInfo`,
+  `package.json`, `pom.xml`, `VERSION`…). Si no la encuentras, `desconocida` y anótalo en
+  «Preguntas abiertas». No la inventes.
+- `ficheros_fuente`: todos los ficheros leídos para escribir la página.
+
 **Reglas de citas (obligatorias):**
 
 - Toda afirmación sobre comportamiento lleva su fuente: `(src/recepcion/Albaran.java:120-134)`.
