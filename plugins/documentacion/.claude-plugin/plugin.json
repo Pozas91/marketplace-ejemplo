@@ -1,7 +1,7 @@
 {
   "name": "documentacion",
   "description": "Manual por procesos a partir del código: escribir, revisar contra el código, consultar, exportar a Word y visita guiada",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "author": {
     "name": "Equipo de documentación"
   }

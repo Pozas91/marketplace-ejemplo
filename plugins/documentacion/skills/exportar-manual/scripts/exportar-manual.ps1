@@ -58,6 +58,7 @@ $excluir = @("index.md", "log.md", "alcance.md")
 $vistos = @{}
 $ficheros = New-Object System.Collections.Generic.List[string]
 $faltan = New-Object System.Collections.Generic.List[string]
+$pendientes = New-Object System.Collections.Generic.List[string]
 
 foreach ($m in $enlaces) {
     $rel = [uri]::UnescapeDataString($m.Groups[1].Value)
@@ -73,12 +74,21 @@ foreach ($m in $enlaces) {
         if (-not ($Paginas | Where-Object { $_ -ieq $slug })) { continue }
     }
     if (Test-Path -LiteralPath $ruta) { $ficheros.Add((Resolve-Path -LiteralPath $ruta).Path) }
-    else { $faltan.Add($rel) }
+    else {
+        # Si la linea del indice dice "pendiente", la pagina aun no se ha escrito: no es un error
+        $ini = $textoIndice.LastIndexOf("`n", [Math]::Max(0, $m.Index - 1)) + 1
+        $fin = $textoIndice.IndexOf("`n", $m.Index); if ($fin -lt 0) { $fin = $textoIndice.Length }
+        $linea = $textoIndice.Substring($ini, $fin - $ini)
+        if ($linea -match '(?i)pendiente') { $pendientes.Add($rel) } else { $faltan.Add($rel) }
+    }
 }
 
 if ($faltan.Count -gt 0) {
     Write-Host "AVISO: el indice enlaza paginas que no existen:"
     $faltan | ForEach-Object { Write-Host "  - $_" }
+}
+if ($pendientes.Count -gt 0) {
+    Write-Host "pendientes (en el indice, sin pagina todavia): $($pendientes.Count)"
 }
 if ($ficheros.Count -eq 0) {
     if ($Paginas.Count -gt 0) { Salir "Ninguna pagina del indice coincide con: $($Paginas -join ', ')" }

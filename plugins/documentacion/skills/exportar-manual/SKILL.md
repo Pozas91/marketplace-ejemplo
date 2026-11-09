@@ -2,7 +2,7 @@
 name: exportar-manual
 description: Exporta la wiki de docs/wiki a un manual en Word (y PDF si hay Word instalado) con portada, índice y un capítulo por página, en el orden del índice. Usar cuando se pida el manual en Word o PDF, "sacar el documento" o entregar la wiki a alguien que no la lee en Markdown.
 argument-hint: "[páginas…] [--pdf] [--con-citas] [--titulo \"…\"] [--nombre …] [--wiki ruta]"
-allowed-tools: Read, Glob, Bash(powershell -NoProfile -ExecutionPolicy Bypass -File ${CLAUDE_SKILL_DIR}/scripts/exportar-manual.ps1 *), Bash(powershell -NoProfile -ExecutionPolicy Bypass -File ${CLAUDE_SKILL_DIR}/scripts/exportar-manual.ps1), PowerShell(${CLAUDE_SKILL_DIR}/scripts/exportar-manual.ps1 *), PowerShell(${CLAUDE_SKILL_DIR}/scripts/exportar-manual.ps1)
+allowed-tools: Read, Glob, Grep, Bash(powershell -NoProfile -ExecutionPolicy Bypass -File ${CLAUDE_SKILL_DIR}/scripts/exportar-manual.ps1 *), Bash(powershell -NoProfile -ExecutionPolicy Bypass -File ${CLAUDE_SKILL_DIR}/scripts/exportar-manual.ps1), Bash(powershell -NoProfile -ExecutionPolicy Bypass -File "${CLAUDE_SKILL_DIR}/scripts/exportar-manual.ps1" *), Bash(powershell -NoProfile -ExecutionPolicy Bypass -File "${CLAUDE_SKILL_DIR}/scripts/exportar-manual.ps1"), PowerShell(${CLAUDE_SKILL_DIR}/scripts/exportar-manual.ps1 *), PowerShell(${CLAUDE_SKILL_DIR}/scripts/exportar-manual.ps1), Bash(pandoc *), Bash(mkdir -p docs/manual)
 ---
 
 # Exportar la wiki a un manual en Word
@@ -42,7 +42,7 @@ código. Si no se indica título, usa `Manual técnico`.
 
 ## 3. Lanzar el script
 
-Desde la raíz del repositorio, **exactamente** con una de estas dos formas. Son las únicas que
+Desde la raíz del repositorio, **exactamente** con una de estas formas. Son las únicas que
 tienen permiso; cualquier variante pide aprobación o la bloquea Claude Code.
 
 - Con la herramienta **Bash** (preferida, porque fija `-ExecutionPolicy Bypass`):
@@ -51,15 +51,39 @@ tienen permiso; cualquier variante pide aprobación o la bloquea Claude Code.
   powershell -NoProfile -ExecutionPolicy Bypass -File ${CLAUDE_SKILL_DIR}/scripts/exportar-manual.ps1 <parámetros>
   ```
 
-- Si solo tienes la herramienta **PowerShell**: la ruta del script tal cual, sin `&`, sin `.`,
-  sin comillas y sin `powershell -File` (un PowerShell dentro de otro se bloquea):
+  Si la ruta tiene espacios, la misma forma con la ruta entre comillas dobles:
+
+  ```
+  powershell -NoProfile -ExecutionPolicy Bypass -File "${CLAUDE_SKILL_DIR}/scripts/exportar-manual.ps1" <parámetros>
+  ```
+
+- Si solo tienes la herramienta **PowerShell** y la ruta no tiene espacios: la ruta del
+  script tal cual, sin `&`, sin `.`, sin comillas y sin `powershell -File` (un PowerShell
+  dentro de otro se bloquea):
 
   ```
   ${CLAUDE_SKILL_DIR}/scripts/exportar-manual.ps1 <parámetros>
   ```
 
-Si la ejecución de scripts está deshabilitada en PowerShell (`running scripts is disabled`),
-usa la forma de Bash; si no tienes Bash, pide al usuario que la lance él.
+### Si PowerShell no deja ejecutar scripts
+
+Si el error dice «la ejecución de scripts está deshabilitada» o «running scripts is
+disabled» (una directiva de la empresa puede bloquearlos aunque se pida `Bypass`), exporta
+con pandoc directamente, que no es un script:
+
+1. Lee `docs/wiki/index.md` y apunta, en su orden, las páginas enlazadas que existen
+   (salvo `index.md`, `log.md` y `alcance.md`). Con Grep busca `estado: borrador` en ellas.
+2. Lanza, con la herramienta Bash:
+
+   ```
+   mkdir -p docs/manual
+   pandoc <páginas en orden> --from markdown --to docx --toc --toc-depth=2 --lua-filter "${CLAUDE_SKILL_DIR}/scripts/manual.lua" --resource-path docs/wiki --metadata title="<título>" -o docs/manual/<nombre>.docx
+   ```
+
+   Añade `--metadata citas=true` para `-ConCitas` y `--reference-doc docs/wiki/plantilla-manual.docx`
+   si existe la plantilla.
+3. Avisa de que así no hay PDF ni índice actualizado: Word pide actualizar campos al abrir
+   el documento, y el PDF se guarda desde Word.
 
 Si falla porque no encuentra pandoc, **no lo instales tú**: dile al usuario que ejecute
 `winget install --id JohnMacFarlane.Pandoc -e`, que abra una terminal nueva y vuelva a
@@ -72,7 +96,8 @@ A partir de la salida del script:
 - número de páginas exportadas
 - **páginas en borrador**: si hay, avisa de que el manual incluye contenido que nadie ha
   validado todavía y nómbralas
-- páginas que el índice enlaza pero no existen
+- páginas que el índice enlaza pero no existen. Las que el índice marca como «pendiente» no
+  son un error: di solo cuántas quedan por escribir, sin listarlas
 - si las citas van incluidas o quitadas, y qué plantilla se ha usado
 - si Word no estaba disponible: el índice del documento se actualiza al abrirlo (Word pide
   actualizar campos) y el PDF hay que guardarlo a mano

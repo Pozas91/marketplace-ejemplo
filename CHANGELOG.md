@@ -3,6 +3,11 @@
 Cada versión sube `version` en `plugins/<plugin>/.claude-plugin/plugin.json`.
 Sin subir la versión, quien ya tenga el plugin instalado **no recibe los cambios**.
 
+## 2026-11-09 (3)
+- `documentacion` 0.2.3: `exportar-manual` funciona con espacios en la ruta (permiso con la
+  ruta entre comillas); si PowerShell tiene los scripts bloqueados por directiva, exporta con
+  pandoc directamente; los procesos «pendiente» del índice ya no salen como páginas que faltan
+
 ## 2026-11-09 (2)
 - `documentacion` 0.2.2, tras el ensayo completo en `almacen-prueba`:
   - `wiki-codigo` lleva el frontmatter exacto en la propia skill (con Sonnet a veces no abría
