@@ -43,12 +43,39 @@ Por cada hecho que vayas a escribir, anota de dónde sale (`ruta/fichero.ext:lí
 - Fíjate en las condiciones: ahí están las reglas de negocio y los casos excepcionales.
 - Si ves código que cambia según el cliente, la instalación o la configuración (ifs por
   cliente, ficheros sobrescritos, parámetros), anótalo como punto de personalización.
+- En una página genérica (`cliente: generico`), el punto de personalización dice **dónde** se
+  engancha y **qué clientes** lo cambian, no **qué** hace cada uno. El comportamiento de un
+  cliente va en su propia página: si se mezcla, un asistente le cuenta a un cliente las reglas
+  de otro.
 
 ### 3. Escribir la página
 
-Usa la estructura de [plantilla-pagina.md](plantilla-pagina.md).
+**Lee antes [plantilla-pagina.md](plantilla-pagina.md)** y usa sus secciones en ese orden.
 
-**Metadatos del frontmatter.** Sirven para filtrar: un buscador o un asistente solo debe
+**Frontmatter: estas claves, con estos nombres exactos y en este orden.** No cambies ni
+traduzcas ninguna (`title`, no `titulo`; `actualizado`, no `fecha`): `wiki-lint`,
+`exportar-manual` y un futuro buscador las leen por su nombre.
+
+```yaml
+---
+title: "<Nombre del proceso>"
+proceso: <slug>
+tipo: proceso            # proceso | subproceso
+cliente: generico        # generico | <cliente>
+instalacion: todas       # todas | <instalación>
+tecnologia: []           # p. ej. [verticales]; [] si es común
+version: desconocida     # o la versión encontrada
+modulos: []
+ficheros_fuente: []
+actualizado: AAAA-MM-DD
+estado: borrador         # siempre borrador: «revisado» solo lo pone una persona
+---
+```
+
+Si `docs/wiki/alcance.md` tiene una sección «Vocabulario de metadatos», usa **solo** sus
+valores para `tecnologia`, `cliente` e `instalacion`.
+
+**Para qué sirven los metadatos.** Para filtrar: un buscador o un asistente solo debe
 devolver lo que aplica a ese cliente, instalación, tecnología y versión. Rellénalos todos:
 
 - `cliente` e `instalacion`: `generico` y `todas` salvo que documentes una personalización.

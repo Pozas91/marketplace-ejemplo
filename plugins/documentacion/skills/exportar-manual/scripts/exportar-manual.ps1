@@ -88,8 +88,14 @@ if ($ficheros.Count -eq 0) {
 # 3. Paginas en borrador
 $borradores = @()
 foreach ($f in $ficheros) {
-    $cabecera = Get-Content -LiteralPath $f -TotalCount 20 -Encoding UTF8
-    if ($cabecera -match '^\s*estado:\s*borrador') { $borradores += (Split-Path $f -Leaf) }
+    # Solo el frontmatter: de la primera linea '---' a la siguiente, tenga la longitud que tenga
+    $lineas = Get-Content -LiteralPath $f -Encoding UTF8
+    if ($lineas.Count -gt 0 -and $lineas[0].Trim() -eq '---') {
+        for ($i = 1; $i -lt $lineas.Count; $i++) {
+            if ($lineas[$i].Trim() -eq '---') { break }
+            if ($lineas[$i] -match '^\s*estado:\s*borrador') { $borradores += (Split-Path $f -Leaf); break }
+        }
+    }
 }
 
 # 4. Salida

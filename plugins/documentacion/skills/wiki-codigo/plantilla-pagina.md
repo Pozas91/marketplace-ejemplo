@@ -36,7 +36,9 @@ estado: borrador         # borrador | revisado
 | | | | |
 
 ## Puntos de personalización
-<En el manual genérico: dónde el código cambia según cliente o configuración.
+<En el manual genérico: dónde se puede cambiar el comportamiento (método que un cliente
+sobrescribe, parámetro de configuración) y qué clientes lo cambian, con enlace a su página.
+NO lo que hace cada cliente: eso va en su página (cliente: <x>), para que no se mezcle.
 En un manual de cliente: qué cambia respecto al genérico y por qué.>
 - <…> (fuente)
 

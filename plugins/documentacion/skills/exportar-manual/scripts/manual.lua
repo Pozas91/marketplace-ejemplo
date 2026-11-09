@@ -138,6 +138,39 @@ return {
       end
     end,
 
+    -- Tablas con una columna "Fuente" (o "Cita"): sin citas, la columna sobra
+    Table = function(tbl)
+      if mantener_citas or #tbl.head.rows == 0 then
+        return nil
+      end
+      local col = nil
+      for k, cell in ipairs(tbl.head.rows[1].cells) do
+        local t = pandoc.utils.stringify(cell.contents):lower():gsub("^%s+", ""):gsub("%s+$", "")
+        if t == "fuente" or t == "fuentes" or t == "cita" or t == "citas" then
+          col = k
+          break
+        end
+      end
+      if not col or #tbl.colspecs < 2 then
+        return nil
+      end
+      local function quitar(rows)
+        for _, row in ipairs(rows) do
+          if #row.cells >= col then
+            row.cells:remove(col)
+          end
+        end
+      end
+      tbl.colspecs:remove(col)
+      quitar(tbl.head.rows)
+      for _, body in ipairs(tbl.bodies) do
+        quitar(body.head)
+        quitar(body.body)
+      end
+      quitar(tbl.foot.rows)
+      return tbl
+    end,
+
     -- el primero también: así el índice queda en su propia página
     Header = function(el)
       if el.level == 1 then

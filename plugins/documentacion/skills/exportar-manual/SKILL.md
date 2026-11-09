@@ -2,7 +2,7 @@
 name: exportar-manual
 description: Exporta la wiki de docs/wiki a un manual en Word (y PDF si hay Word instalado) con portada, índice y un capítulo por página, en el orden del índice. Usar cuando se pida el manual en Word o PDF, "sacar el documento" o entregar la wiki a alguien que no la lee en Markdown.
 argument-hint: "[páginas…] [--pdf] [--con-citas] [--titulo \"…\"] [--nombre …] [--wiki ruta]"
-allowed-tools: Read, Glob, Bash(powershell -NoProfile -ExecutionPolicy Bypass -File ${CLAUDE_SKILL_DIR}/scripts/exportar-manual.ps1 *)
+allowed-tools: Read, Glob, Bash(powershell -NoProfile -ExecutionPolicy Bypass -File ${CLAUDE_SKILL_DIR}/scripts/exportar-manual.ps1 *), Bash(powershell -NoProfile -ExecutionPolicy Bypass -File ${CLAUDE_SKILL_DIR}/scripts/exportar-manual.ps1), PowerShell(${CLAUDE_SKILL_DIR}/scripts/exportar-manual.ps1 *), PowerShell(${CLAUDE_SKILL_DIR}/scripts/exportar-manual.ps1)
 ---
 
 # Exportar la wiki a un manual en Word
@@ -42,11 +42,24 @@ código. Si no se indica título, usa `Manual técnico`.
 
 ## 3. Lanzar el script
 
-Desde la raíz del repositorio, exactamente con esta forma:
+Desde la raíz del repositorio, **exactamente** con una de estas dos formas. Son las únicas que
+tienen permiso; cualquier variante pide aprobación o la bloquea Claude Code.
 
-```
-powershell -NoProfile -ExecutionPolicy Bypass -File ${CLAUDE_SKILL_DIR}/scripts/exportar-manual.ps1 <parámetros>
-```
+- Con la herramienta **Bash** (preferida, porque fija `-ExecutionPolicy Bypass`):
+
+  ```
+  powershell -NoProfile -ExecutionPolicy Bypass -File ${CLAUDE_SKILL_DIR}/scripts/exportar-manual.ps1 <parámetros>
+  ```
+
+- Si solo tienes la herramienta **PowerShell**: la ruta del script tal cual, sin `&`, sin `.`,
+  sin comillas y sin `powershell -File` (un PowerShell dentro de otro se bloquea):
+
+  ```
+  ${CLAUDE_SKILL_DIR}/scripts/exportar-manual.ps1 <parámetros>
+  ```
+
+Si la ejecución de scripts está deshabilitada en PowerShell (`running scripts is disabled`),
+usa la forma de Bash; si no tienes Bash, pide al usuario que la lance él.
 
 Si falla porque no encuentra pandoc, **no lo instales tú**: dile al usuario que ejecute
 `winget install --id JohnMacFarlane.Pandoc -e`, que abra una terminal nueva y vuelva a

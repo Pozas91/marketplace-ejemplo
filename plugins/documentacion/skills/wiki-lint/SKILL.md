@@ -58,7 +58,8 @@ respalda el código.
   `version`, `modulos`, `ficheros_fuente`, `actualizado` o `estado`. `version: desconocida`
   se avisa como pendiente, no como error.
 - **Metadatos que no cuadran con el contenido**: una página con `cliente: generico` que
-  describe el comportamiento de un cliente concreto, o una `tecnologia` que el código citado
+  describe el comportamiento de un cliente concreto (nombrar qué clientes cambian un punto
+  y enlazar su página está bien; contar qué hacen, no), o una `tecnologia` que el código citado
   no respalda. Sin metadatos fiables, un asistente mezcla la información de varios clientes.
 - **Páginas de más de ~300 líneas**: candidatas a dividir en subprocesos.
 - **Imágenes o pantallazos sin descripción en texto**: un buscador no puede leerlos.

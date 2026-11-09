@@ -3,6 +3,16 @@
 Cada versión sube `version` en `plugins/<plugin>/.claude-plugin/plugin.json`.
 Sin subir la versión, quien ya tenga el plugin instalado **no recibe los cambios**.
 
+## 2026-11-09 (2)
+- `documentacion` 0.2.2, tras el ensayo completo en `almacen-prueba`:
+  - `wiki-codigo` lleva el frontmatter exacto en la propia skill (con Sonnet a veces no abría
+    la plantilla y cambiaba claves o se dejaba `estado`) y usa el vocabulario de `alcance.md`
+  - en una página genérica, «Puntos de personalización» dice dónde se engancha cada cliente
+    y quién lo cambia, no qué hace (eso va en su página)
+  - `exportar-manual` lanza el script en las dos formas que permite Claude Code (Bash con
+    `powershell -File` o la ruta directa en PowerShell; un PowerShell anidado se bloquea),
+    detecta borradores con frontmatter largo y quita la columna «Fuente» de las tablas
+
 ## 2026-11-09
 - `documentacion` 0.2.1: la plantilla de `wiki-codigo` añade `instalacion`, `tecnologia` y
   `version` al frontmatter, para filtrar por cliente, instalación, tecnología y versión.
