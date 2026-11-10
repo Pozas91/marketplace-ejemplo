@@ -31,6 +31,15 @@ Desde la raíz del repo donde se quiera usar:
 claude mcp add --scope project festivos -- uv run --script <ruta>/servidor.py
 ```
 
+O, sin descargar nada, directamente desde GitHub (uv baja el script cada vez que arranca):
+
+```powershell
+claude mcp add --scope project festivos -- uv run --script https://raw.githubusercontent.com/Pozas91/marketplace-ejemplo/main/ejemplos/mcp-festivos/servidor.py
+```
+
+Para una demo vale. Para el día a día, el script se versiona en vuestro repo o marketplace:
+lo que se ejecuta desde una URL puede cambiar sin que os enteréis.
+
 Crea `.mcp.json` en el repo (se sube a git y le llega al equipo; cada persona lo aprueba al
 arrancar `claude`). Sin `--scope project`, queda solo para ti en ese repo.
 
