@@ -4,6 +4,8 @@ Cada versión sube `version` en `plugins/<plugin>/.claude-plugin/plugin.json`.
 Sin subir la versión, quien ya tenga el plugin instalado **no recibe los cambios**.
 
 ## 2026-11-10
+- `ejemplos/hooks`: tres hooks en PowerShell probados en Windows: `ruff format` tras editar,
+  `pre-commit` antes de `git commit` (bloquea si falla) y aviso de Windows en `Notification`
 - `ejemplos/mcp-festivos`: MCP de ejemplo en Python que envuelve la API pública de festivos
   de Nager.Date (`festivos`, `es_laborable`, `siguiente_laborable`). No es un plugin
 - `documentacion` 0.2.4: `wiki-lint` corre en un subagente (`context: fork`,
