@@ -14,6 +14,20 @@ modelo se acuerde: lo ejecuta Claude Code, no Claude.
 | Pre-commit | `PreToolUse` con `Bash`, solo `git commit` | Pasa `pre-commit` antes del commit. Si falla, **lo bloquea** (salida 2) y Claude recibe el error para corregirlo | [`precommit.ps1`](scripts/precommit.ps1) |
 | Notificación | `Notification` | Aviso de Windows cuando Claude pide permiso, pregunta algo o lleva rato esperando | [`notificar.ps1`](scripts/notificar.ps1) |
 
+## Montar la demo en un minuto
+
+En PowerShell, desde la carpeta donde se quiera crear (no hace falta clonar nada):
+
+```powershell
+irm https://raw.githubusercontent.com/Pozas91/marketplace-ejemplo/main/ejemplos/hooks/instalar-demo.ps1 | iex
+cd demo-hooks
+claude
+```
+
+Crea `demo-hooks/` con git, los tres hooks, `.pre-commit-config.yaml` y un `demo-malo.py` con
+fallos a propósito, y escribe los pasos de la demo. Volver a lanzarlo la deja como al
+principio. Necesita `ruff` y `pre-commit` (ver Requisitos).
+
 ## Instalarlos en un repo
 
 1. Copiar `scripts/*.ps1` a `<repo>/.claude/hooks/`
