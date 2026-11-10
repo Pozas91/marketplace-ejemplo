@@ -4,6 +4,8 @@ Cada versión sube `version` en `plugins/<plugin>/.claude-plugin/plugin.json`.
 Sin subir la versión, quien ya tenga el plugin instalado **no recibe los cambios**.
 
 ## 2026-11-10
+- `ejemplos/mcp-festivos`: MCP de ejemplo en Python que envuelve la API pública de festivos
+  de Nager.Date (`festivos`, `es_laborable`, `siguiente_laborable`). No es un plugin
 - `documentacion` 0.2.4: `wiki-lint` corre en un subagente (`context: fork`,
   `agent: general-purpose`): abre todos los ficheros citados sin llenar la conversación y
   solo vuelve el informe. Ejemplo de skill con `fork` frente a `grill-me`, que no puede

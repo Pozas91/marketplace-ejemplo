@@ -27,6 +27,8 @@ empresa-skills/                      ← raíz del marketplace (este repo)
 │   │   └── README.md
 │   ├── diagramas/                   ← mermaid, diagrama-flujo
 │   └── revision/                    ← grill-me, code-review y .mcp.json (Microsoft Learn)
+├── ejemplos/
+│   └── mcp-festivos/                ← MCP de ejemplo: envuelve una API pública (no es un plugin)
 ├── CHANGELOG.md
 ├── GUIA-SKILLS.md                   ← qué enseña cada skill y notas para la clase
 ├── LICENSE                          ← MIT
