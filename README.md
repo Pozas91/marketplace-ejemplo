@@ -88,8 +88,8 @@ claude plugin marketplace add Pozas91/marketplace-ejemplo
 claude plugin install documentacion@empresa-skills
 ```
 
-En tu copia privada. Requisito: `git` con acceso al repo y la credencial ya guardada (Claude Code no pide
-contraseña: si git tiene que preguntar, falla).
+En tu copia privada. Requisito: `git` con acceso al repo y la credencial ya guardada (Claude
+Code no pide contraseña: si git tiene que preguntar, falla).
 
 ```bash
 claude plugin marketplace add <URL-git-del-repo>     # GitLab/Azure/etc.: URL completa .git
@@ -99,6 +99,28 @@ claude plugin install revision@empresa-skills       # opcional
 ```
 
 O dentro de Claude Code: `/plugin marketplace add <URL>` y `/plugin install documentacion@empresa-skills`.
+
+## Requisitos
+
+La mayoría de las skills solo necesitan Claude Code. Tres usan programas externos (Windows,
+sin permisos de administrador):
+
+| Para | Hace falta | Cómo se instala |
+|---|---|---|
+| `documentacion:exportar-manual` (wiki a Word) | [pandoc](https://pandoc.org) | `winget install --id JohnMacFarlane.Pandoc -e` y abrir una terminal nueva |
+| `documentacion:exportar-manual --pdf` | Microsoft Word | Sin Word sale el `.docx`; el PDF se guarda a mano |
+| `documentacion:mapa-repo` y el MCP de `ejemplos/mcp-festivos` | [uv](https://docs.astral.sh/uv/) | `winget install --id astral-sh.uv -e` |
+| Hooks de `ejemplos/hooks` | `ruff` y `pre-commit` | `uv tool install ruff` · `uv tool install pre-commit` |
+
+Cómo exportar la wiki a Word, con ejemplos y la plantilla corporativa: ver el
+[README de `documentacion`](plugins/documentacion/README.md#exportar-la-wiki-a-word).
+
+## Ejemplos que no son plugins
+
+| Carpeta | Qué es |
+|---|---|
+| [`ejemplos/mcp-festivos`](ejemplos/mcp-festivos/README.md) | Un MCP de ~100 líneas en Python que envuelve una API pública de festivos: para ver qué es un MCP por dentro |
+| [`ejemplos/hooks`](ejemplos/hooks/README.md) | Tres hooks en PowerShell: `ruff` tras editar, `pre-commit` antes de `git commit` y aviso de Windows cuando Claude necesita atención |
 
 ## Activarlo en el repo de código para todo el equipo
 
