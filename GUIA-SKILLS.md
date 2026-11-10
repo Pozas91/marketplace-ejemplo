@@ -1,6 +1,6 @@
 # Guía de las skills
 
-Ocho skills de ejemplo para las sesiones, repartidas en tres plugins (`documentacion`,
+Diez skills de ejemplo para las sesiones, repartidas en tres plugins (`documentacion`,
 `diagramas`, `revision`). Cada una enseña una parte distinta del frontmatter.
 
 | Skill | Para qué | Qué enseña |
@@ -13,6 +13,7 @@ Ocho skills de ejemplo para las sesiones, repartidas en tres plugins (`documenta
 | `grill-me` | Entrevista por rondas para acotar un alcance o sacar lo que solo sabe una persona | `disable-model-invocation`, `Agent` en `allowed-tools` (busca hechos con subagentes), un protocolo de conversación en vez de un resultado |
 | `wiki-lint` | Revisa la wiki contra el código (cada cita) y contra RAG-readiness | `context: fork` + `agent`: corre en un subagente, abre todos los ficheros citados y solo vuelve el informe. Modo solo informe por defecto y `--fix` en `$ARGUMENTS` |
 | `wiki-query` | Responde solo con la wiki, como lo haría el futuro asistente, y valora la cobertura | Restringir las fuentes por instrucción; `--contrastar` para comprobar contra el código |
+| `mapa-repo` | Mapa del repo (carpetas, lenguajes, tamaño, pistas de personalización) antes de documentar | **Script de Python** en `scripts/`: hace el recuento de miles de ficheros y Claude solo interpreta el resumen. Solo librería estándar; se lanza con `uv run --script` |
 | `exportar-manual` | Exporta la wiki a Word (y PDF si hay Word), en el orden del índice | Script en `scripts/` lanzado con `${CLAUDE_SKILL_DIR}` y permitido en `allowed-tools`: el trabajo lo hace el script y Claude no gasta contexto leyendo las páginas |
 
 ## Instalar

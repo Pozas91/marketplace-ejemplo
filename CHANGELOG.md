@@ -4,6 +4,10 @@ Cada versión sube `version` en `plugins/<plugin>/.claude-plugin/plugin.json`.
 Sin subir la versión, quien ya tenga el plugin instalado **no recibe los cambios**.
 
 ## 2026-11-10
+- `documentacion` 0.3.0: nueva skill `mapa-repo`. Un script de Python (solo librería estándar)
+  hace el mapa del repo (carpetas, lenguajes, líneas, ficheros más grandes y carpetas que
+  parecen personalizaciones por cliente) y Claude lo interpreta sin leer los ficheros. 3 s
+  sobre un repo .NET de 6.746 ficheros
 - `ejemplos/hooks`: tres hooks en PowerShell probados en Windows: `ruff format` tras editar,
   `pre-commit` antes de `git commit` (bloquea si falla) y aviso de Windows en `Notification`
 - `ejemplos/mcp-festivos`: MCP de ejemplo en Python que envuelve la API pública de festivos

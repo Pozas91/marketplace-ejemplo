@@ -10,6 +10,7 @@ afirmación citada a `fichero:línea`.
 | `/documentacion:wiki-codigo <proceso> [carpeta]` | Escribe o actualiza la página del proceso en `docs/wiki/procesos/`, con índice y registro |
 | `/documentacion:wiki-lint [página] [--fix]` | Revisa la wiki contra el código: citas, afirmaciones sin fuente, contradicciones, RAG-readiness |
 | `/documentacion:wiki-query <pregunta> [--contrastar]` | Responde solo con la wiki, como lo haría un asistente, y valora la cobertura |
+| `/documentacion:mapa-repo [carpeta]` | Mapa del repo con un script de Python: carpetas, lenguajes, tamaño y pistas de personalización. Para decidir por dónde empezar |
 | `/documentacion:exportar-manual [páginas] [--pdf] [--con-citas]` | Exporta la wiki a Word (y PDF si hay Word) en el orden del índice. Requiere pandoc |
 | `/documentacion:onboarding-procesos [proceso]` | Visita guiada al repositorio por procesos de negocio |
 

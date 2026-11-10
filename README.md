@@ -22,6 +22,7 @@ empresa-skills/                      ← raíz del marketplace (este repo)
 │   │   │   ├── wiki-codigo/         ← SKILL.md + plantilla-pagina.md
 │   │   │   ├── wiki-lint/
 │   │   │   ├── wiki-query/
+│   │   │   ├── mapa-repo/           ← SKILL.md + scripts/mapa_repo.py (Python)
 │   │   │   ├── exportar-manual/     ← SKILL.md + scripts/ (PowerShell y filtro de pandoc)
 │   │   │   └── onboarding-procesos/
 │   │   └── README.md
@@ -38,7 +39,7 @@ empresa-skills/                      ← raíz del marketplace (este repo)
 
 | Plugin | Skills | Sesión |
 |---|---|---|
-| `documentacion` | `wiki-codigo`, `onboarding-procesos` · `wiki-lint`, `exportar-manual` · `wiki-query` | 1 · 2 · 3 |
+| `documentacion` | `wiki-codigo`, `onboarding-procesos` · `wiki-lint`, `exportar-manual`, `mapa-repo` · `wiki-query` | 1 · 2 · 3 |
 | `diagramas` | `mermaid` (`diagrama-flujo`, de consulta) | 1 |
 | `revision` | `grill-me` · `code-review` (de consulta) + MCP de Microsoft Learn | 2 · 3 |
 
